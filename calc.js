@@ -1,5 +1,7 @@
 let clicked = false;
 let counter = 0;
+let display = "";
+let checkForNewResult = false;
 
 function add(a, b){
     return a + b;
@@ -14,7 +16,13 @@ function mult(a, b){
 }
 
 function divide(a, b){
-    return a / b;
+    if(b === 0){
+        return alert("You cannot divide by zero dum ah");
+    }
+    let num = a / b;
+    num = num.toFixed(3);
+    num = parseFloat(num);
+    return num;
 }
 
 let num1 = "";
@@ -22,8 +30,8 @@ let num2 = "";
 let operator = "" 
 
 function operate(num1, num2, operator){
-    num1 = parseInt(num1);
-    num2 = parseInt(num2);
+    num1 = parseFloat(num1);
+    num2 = parseFloat(num2);
     if(operator === "add"){
         return add(num1, num2);
     } else if(operator === "sub"){
@@ -45,102 +53,134 @@ const btn4 = document.querySelector(".four");
 const btn3 = document.querySelector(".three");
 const btn2 = document.querySelector(".two");
 const btn1 = document.querySelector(".one");
-const btn = document.querySelector(".num");
-
-btn.addEventListener("click", function(){
-    console.log(btn.textContent);
-})
+const btn0 = document.querySelector(".zero");
 
 btn9.addEventListener("click", function(){
+    
     if(clicked === true){
         num2 += "9";
-        return output.textContent = num2;
+        display += "9";
+        return output.textContent = display;
+    } else if(checkForNewResult = true){
+        num1 = "";
+        display = "";
+        num1 +=  "9";
+        display += "9";
+        return output.textContent = display
     } else {
         num1 +=  "9";
-        return output.textContent = num1;
+        display += "9";
+        return output.textContent = display;
     }
 });
 
 btn8.addEventListener("click", function(){
     if(clicked === true){
         num2 += "8";
-        return output.textContent = num2;
+        display += "8";
+        return output.textContent = display;
     } else {
         num1 +=  "8";
-        return output.textContent = num1;
+        display += "8";
+        return output.textContent = display;
     }
 });
 
 btn7.addEventListener("click", function(){
     if(clicked === true){
         num2 += "7";
-        return output.textContent = num2; 
+        display += "7";
+        return output.textContent = display; 
     } else {
         num1 +=  "7";
-        return output.textContent = num1;
+        display += "7";
+        return output.textContent = display;
     }
 });
 
 btn6.addEventListener("click", function(){
     if(clicked === true){
         num2 += "6";
+        display += "6";
         return output.textContent = num2;
     } else {
         num1 +=  "6";
-        return output.textContent = num1;
+        display += "6";
+        return output.textContent = display;
     }
 });
 
 btn5.addEventListener("click", function(){
     if(clicked === true){
         num2 += "5";
-        return output.textContent = num2;
+        display += "5";
+        return output.textContent = display;
     } else {
         num1 +=  "5";
-        return output.textContent = num1;
+        display += "5";
+        return output.textContent = display;
     }
 });
 
 btn4.addEventListener("click", function(){
     if(clicked === true){
         num2 += "4";
-        return output.textContent = num2;
+        display += "4";
+        return output.textContent = display;
     } else {
         num1 +=  "4";
-        return output.textContent = num1;
+        display += "4";
+        return output.textContent = display;
     }
 });
 
 btn3.addEventListener("click", function(){
     if(clicked === true){
         num2 += "3";
-        return output.textContent = num2;
+        display += "3";
+        return output.textContent = display;
     } else {
         num1 +=  "3";
-        return output.textContent = num1;
+        display += "3";
+        return output.textContent = display;
     }
 });
 
 btn2.addEventListener("click", function(){
     if(clicked === true){
         num2 += "2";
-        return output.textContent = num2;
+        display += "2";
+        return output.textContent = display;
     } else {
         num1 +=  "2";
-        return output.textContent = num1;
+        display += "2";
+        return output.textContent = display;
     }
 });
 
 btn1.addEventListener("click", function(){
     if(clicked === true){
         num2 += "1";
-        return output.textContent = num2;
+        display += "1";
+        return output.textContent = display;
     } else {
         num1 +=  "1";
-        return output.textContent = num1;
+        display += "1";
+        return output.textContent = display
     }
 });
 
+btn0.addEventListener("click", function(){
+    if(clicked === true){
+        num2 += "0";
+        display += "0";
+        output.textContent = display;
+    } else {
+        num1 += "0";
+        display += "0";
+        output.textContent = display;
+    }
+})
 const btnAdd = document.querySelector(".add");
 const btnSub = document.querySelector(".sub");
 const btnMult = document.querySelector(".mult");
@@ -151,55 +191,75 @@ let result = 0;
 btnAdd.addEventListener("click", function(){
     counter++;
     clicked = true;
-    operator = "add";
-    if(clicked === true && counter > 1 && counter < 3){
-        result = operate(num1, num2, operator);
-        num1 = "";
+    display += " + ";
+    if(num2 === ""){
+        operator = "add";
+        output.textContent = display;
+    } else {
+        num1 = operate(num1, num2, operator);
         num2 = "";
-        clicked = false;
-        return output.textContent = result + "+";
+        operator = "add";
+        display = num1 + " + ";
+        return output.textContent = display;
     }
-    if(clicked === true && counter >= 3){
-        clicked = false;
-        result = output.textContent = operate(num1, result, operator);
-        num1 = "";
-        return result;
-    }
-    output.textContent = num1 + " + "
 })
 
-let counterS = 0;
+
 
 btnSub.addEventListener("click", function(){
-    counterS++;
+    counter++;
     clicked = true;
-    operator = "sub"
-    if(clicked === true && counterS > 1 && counterS < 3){
-        result = operate(num1, num2, operator);
-        num1 = "";
+    display += " - ";
+    if(num2 === ""){
+        operator = "sub";
+        output.textContent = display;
+        counter = 1;
+    }
+    if(counter > 1){
+        num1 = operate(num1, num2, operator);
         num2 = "";
-        clicked = false;
-        return output.textContent = result;
+        operator = "sub";
+        display = num1 + " - ";
+        return output.textContent = display;
     }
-    if(clicked === true && counterS >= 3){
-        clicked = false;
-        result = output.textContent = operate(result, num1, operator);
-        num1 = "";
-        return result;
-    }
-    output.textContent = "-";
 })
 
 btnMult.addEventListener("click", function(){
+    counter++;
     clicked = true;
-    operator = "mult";
-    return output.textContent = "x";
+    display += " x ";
+    if(num2 === ""){
+        operator = "mult";
+        output.textContent = display;
+        counter = 1;
+    }
+    if(counter > 1){
+        num1 = operate(num1, num2, operator);
+        num2 = "";
+        operator = "mult";
+        display = num1 + " x ";
+        return output.textContent = display
+    }
 })
 
 btnDivdie.addEventListener("click", function(){
+    counter++;
     clicked = true;
-    operator = "divide"
-    return output.textContent = "/";
+    display += " % ";
+    if(num2 === ""){
+        operator = "divide";
+        output.textContent = display;
+        counter = 1;
+    }
+    if(counter > 1){
+        num1 = operate(num1, num2, operator);
+        num2 = "";
+        operator = "divide";
+        display = num1 + " % ";
+        return output.textContent = display;
+    }
+    operator = "divide";
+    output.textContent = display;
 })
 
 const clear = document.querySelector(".spec");
@@ -209,14 +269,20 @@ clear.addEventListener("click", function(){
     num2 = "";
     operator = "";
     clicked = false;
+    counter = 0;
+    display = "";
     output.textContent = "";
 })
 
 const equal = document.querySelector(".equal");
 
 equal.addEventListener("click", function(){
-    if(clicked === true && counter > 1){
-        return output.textContent = "HELLO WORLD";
-    }
-    output.textContent = operate(num1, num2, operator);
+    num1 = operate(num1, num2, operator);
+    clicked = false;
+    display = "";
+    display += num1;
+    counter = 0;
+    num2 = "";
+    checkForNewResult = true;
+    output.textContent = num1;
 })

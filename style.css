@@ -16,10 +16,15 @@
     justify-content: space-between;
     flex-grow: 1;
 }
+
 .output{
     display: flex;
     background-color: darkseagreen;
     padding: 8px;
+}
+
+button {
+    border-radius: 10px;
 }
 
 .numbers {
@@ -29,23 +34,9 @@
     align-items: center;
 }
 
-.operators{
-    background-color: antiquewhite;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-}
-
 .row {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
 }
 
-.num{
-    padding: 9px;
-}
-
-.spec {
-    font-size: 10px;
-}
